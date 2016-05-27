@@ -1,0 +1,51 @@
+<style>
+    .margin { margin: 10px 0; }
+    form label { display: block; }
+    .wrapper { padding: 20px; max-width: 800px; margin: auto; background-color: #ffffee; }
+    .rad-button { display: block;
+        margin-left: 5px;
+        padding: 0 14px;
+        height: 37px;
+        line-height: 35px;
+        border-radius: 3px;
+        box-sizing: border-box;
+        cursor: pointer;
+        text-shadow: 0 1px rgba(0, 0, 0, .36);
+        color: #fff;
+        font-size: 14px;
+        border: 1px solid #34783F;
+        background: #2A9F3F;
+        background: -webkit-linear-gradient(#3BBE4F 3%, #38AB47 4%, #2A9F3F 95%, #27983C 95%);
+        background: linear-gradient(#3BBE4F 3%, #38AB47 4%, #2A9F3F 95%, #27983C 95%)
+    }
+    .rad-button:hover {
+        border-color: #449951;
+        background: #7AC187;
+        background: -webkit-linear-gradient(#B3E0BA 3%, #84CC8E 4%, #7AC187 95%, #6DB97A 95%);
+        background: linear-gradient(#B3E0BA 3%, #84CC8E 4%, #7AC187 95%, #6DB97A 95%)
+    }
+    body { background-color: steelblue; font-family: "Helvetica Neue", Arial, sans-serif }
+}
+</style>
+
+
+<div class="wrapper">
+    <h1>Create new movie</h1>
+    <form action="/movies/create" method="post">
+        <label for="title" class="margin">Title</label>
+        <input type="text" name="title" id="title">
+        <label for="year" class="margin">Year</label>
+        <input type="text" name="year" id="year">
+        <label for="imdb" class="margin">Imdb</label>
+        <input type="text" name="imdb" id="imdb">
+        <button class="rad-button margin" type="submit">Create</button>
+    </form>
+
+<ul>
+  {% for movie in movies %}
+  <li><a target='_blank' href="http://www.imdb.com/title/{{ movie.imdb }}">{{ movie.title }} - {{ movie.year }}</a></li>
+  {% else %}
+  <p>No movies here. Create some!</p>
+  {% endfor %}
+</ul>
+</div>
